@@ -1,6 +1,6 @@
 networks:
   ldap-network:
-    internal: true
+    internal: false
 
 services:
   ldap-server:
@@ -11,7 +11,7 @@ services:
         aliases:
           - ldap-server.fake
     ports:
-      - "127.0.0.1:636:636"
+      - "636:636"
     volumes:
       - "./spec/acceptance:/acceptance:ro"
 
