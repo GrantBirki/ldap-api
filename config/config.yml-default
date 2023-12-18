@@ -1,0 +1,30 @@
+ldap:
+  cache:
+    ttl: 3600
+  limit_results: 100
+  connection:
+    host: localhost
+    base: o=acme
+    bind_dn: cn=admin,o=acme
+    password: pass
+  user:
+    dn_attribute: uid
+    prefix: ou=Users
+    classes: 
+      - inetorgperson
+    filter: (|(uid=%s)(sn=%s)(cn=%s)(givenName=%s))
+    attributes:
+      uid: username
+      sn: last_name
+      givenName: first_name
+      cn: display_name
+      departmentNumber: office
+      employeeNumber: document_number
+  group:
+    dn_attribute: cn
+    member_attribute: member
+    user_membership_attribute: dn
+    classes: 
+      - groupofnames
+    attributes:
+      cn: name
