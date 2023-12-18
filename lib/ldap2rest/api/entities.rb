@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require "grape"
+require "grape-entity"
+
 module Ldap2Rest
   module API
     class User < Grape::Entity

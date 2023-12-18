@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "active_ldap"
+
 module Ldap2Rest
   class User < ActiveLdap::Base
     def self.default_prefix
