@@ -1,13 +1,12 @@
 # frozen_string_literal: true
 
 require "grape"
-require "garner"
+require "garner/mixins/rack"
 
 module Ldap2Rest
   module API
     class LDAP < Grape::API
-      use Garner::Middleware::Cache::Bust
-      helpers Garner::Mixins::Grape::Cache
+      helpers Garner::Mixins::Rack
 
       version "v1", using: :path
       format :json

@@ -1,9 +1,12 @@
 # frozen_string_literal: true
 
+require "config"
+require "active_ldap"
+
 module Ldap2Rest
   module LdapSettings
     def self.setup(path = "./config/config.yml")
-      RailsConfig.load_and_set_settings path
+      Config.load_and_set_settings path
       settings = Settings.ldap.connection.to_hash
       validate_config
       settings[:logger] = Logger.new($stderr)
