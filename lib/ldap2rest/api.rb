@@ -27,9 +27,7 @@ module Ldap2Rest
         get do
           @users = garner do
             filter ||= build_filter(:user, params[:filter])
-            Ldap2Rest::User.find(:all, { filter:, limit: Settings.ldap.limit_results }).collect do |x|
-              x.to_os
-            end
+            Ldap2Rest::User.find(:all, { filter:, limit: Settings.ldap.limit_results }).collect(&:to_os)
           end
           present @users, with: Ldap2Rest::API::User
         end
@@ -51,7 +49,7 @@ module Ldap2Rest
             requires :username, type: String, desc: "username to be fetched"
           end
           @groups = garner do
-            Ldap2Rest::User.find(:first, params[:username]).groups.collect { |x| x.to_os }
+            Ldap2Rest::User.find(:first, params[:username]).groups.collect(&:to_os)
           end
           present @groups, with: Ldap2Rest::API::Group
         end
@@ -62,9 +60,7 @@ module Ldap2Rest
         get do
           @groups = garner do
             filter ||= build_filter(:group, params[:filter])
-            Ldap2Rest::Group.find(:all, { filter:, limit: Settings.ldap.limit_results }).collect do |x|
-              x.to_os
-            end
+            Ldap2Rest::Group.find(:all, { filter:, limit: Settings.ldap.limit_results }).collect(&:to_os)
           end
           present @groups, with: Ldap2Rest::API::Group
         end
@@ -75,7 +71,7 @@ module Ldap2Rest
             requires :filter, type: String, desc: "filter by group name. Wildcard(*) should be used"
           end
           @users = garner do
-            Ldap2Rest::Group.find(:first, params[:name]).members.collect { |x| x.to_os }
+            Ldap2Rest::Group.find(:first, params[:name]).members.collect(&:to_os)
           end
           present @users, with: Ldap2Rest::API::User
         end
