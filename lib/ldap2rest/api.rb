@@ -39,7 +39,7 @@ module Ldap2Rest
           end
           @user = garner do
             @user = Ldap2Rest::User.find(:first, params[:username])
-            @user.to_os if @user
+            @user&.to_os
           end
           present @user, with: Ldap2Rest::API::User
         end

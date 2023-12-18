@@ -37,7 +37,7 @@ class ActiveLdap::Base
     o = OpenStruct.new
     Settings.ldap.send(self.class.name.split("::").last.downcase).attributes.to_hash.each do |att, _x|
       value = send(att)
-      o.send(att.to_s + "=", array_of(value, false))
+      o.send("#{att}=", array_of(value, false))
     end
     o
   end

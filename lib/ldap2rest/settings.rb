@@ -2,17 +2,25 @@
 
 require "config"
 require "active_ldap"
+require "redacting_logger"
 
 module Ldap2Rest
   module LdapSettings
-    def self.setup(path = "./config/config.yml")
+    def self.setup(path)
+      # load and validate config
       Config.load_and_set_settings path
       settings = Settings.ldap.connection.to_hash
       validate_config
-      settings[:logger] = Logger.new($stderr)
-      settings[:logger].level = Logger::DEBUG
+
+      # setup a logger
+      $stdout.sync = true # don't buffer, flush immediately
+      settings[:logger] = RedactingLogger.new($stderr)
+      settings[:logger].level = ENV.fetch("LOG_LEVEL", "INFO").upcase.to_sym
+
+      # bind to LDAP
       settings[:allow_anonymous] = false unless settings.key? :allow_anonymous
       ActiveLdap::Base.setup_connection settings
+
       require "./lib/ldap2rest/active_ldap"
       require "./lib/ldap2rest/api/entities"
     end
