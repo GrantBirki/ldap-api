@@ -21,7 +21,7 @@ module Ldap2Rest
       h = Settings.to_hash
       h.assert_valid_keys(:ldap)
       h[:ldap].assert_valid_keys(:connection, :cache, :limit_results, :user, :group)
-      c = h[:ldap][:connection]
+      _c = h[:ldap][:connection]
       %i[host base].each do |k|
         raise(ArgumentError, "Need ldap.connection.key: #{k}") unless h[:ldap][:connection].key?(k)
       end
