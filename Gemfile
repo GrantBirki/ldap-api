@@ -10,6 +10,7 @@ gem "grape", "~> 2.0"
 gem "grape-entity", "~> 1.0"
 gem "net-ldap", "~> 0.18.0"
 gem "rack", "~> 3.0", ">= 3.0.8"
+gem "rackup", "~> 2.1"
 gem "redacting-logger", "~> 1.1.0"
 
 group :development do
