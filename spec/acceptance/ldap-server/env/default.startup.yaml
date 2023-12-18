@@ -24,7 +24,7 @@ LDAP_RFC2307BIS_SCHEMA: false
 LDAP_BACKEND: hdb
 
 # Tls
-LDAP_TLS: true
+LDAP_TLS: false # disabled for local testing
 LDAP_TLS_CRT_FILENAME: ldap.crt
 LDAP_TLS_KEY_FILENAME: ldap.key
 LDAP_TLS_CA_CRT_FILENAME: ca.crt
