@@ -3,7 +3,7 @@ ldap:
     ttl: 3600
   limit_results: 100
   connection:
-    host: "172.28.0.2"
+    host: "localhost"
     base: o=acme
     bind_dn: uid=emmy,ou=Service_Accounts,dc=kittens,dc=net
     password: kittens
