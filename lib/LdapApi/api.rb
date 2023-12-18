@@ -3,7 +3,7 @@
 require "grape"
 require "garner/mixins/rack"
 
-module Ldap2Rest
+module LdapApi
   module API
     class LDAP < Grape::API
       helpers Garner::Mixins::Rack
@@ -27,9 +27,9 @@ module Ldap2Rest
         get do
           @users = garner do
             filter ||= build_filter(:user, params[:filter])
-            Ldap2Rest::User.find(:all, { filter:, limit: Settings.ldap.limit_results }).collect(&:to_os)
+            LdapApi::User.find(:all, { filter:, limit: Settings.ldap.limit_results }).collect(&:to_os)
           end
-          present @users, with: Ldap2Rest::API::User
+          present @users, with: LdapApi::API::User
         end
 
         desc "Returns a single user matching specified username"
@@ -38,10 +38,10 @@ module Ldap2Rest
             requires :username, type: String, desc: "username to be fetched"
           end
           @user = garner do
-            @user = Ldap2Rest::User.find(:first, params[:username])
+            @user = LdapApi::User.find(:first, params[:username])
             @user&.to_os
           end
-          present @user, with: Ldap2Rest::API::User
+          present @user, with: LdapApi::API::User
         end
 
         get ":username/groups" do
@@ -49,9 +49,9 @@ module Ldap2Rest
             requires :username, type: String, desc: "username to be fetched"
           end
           @groups = garner do
-            Ldap2Rest::User.find(:first, params[:username]).groups.collect(&:to_os)
+            LdapApi::User.find(:first, params[:username]).groups.collect(&:to_os)
           end
-          present @groups, with: Ldap2Rest::API::Group
+          present @groups, with: LdapApi::API::Group
         end
       end
 
@@ -60,9 +60,9 @@ module Ldap2Rest
         get do
           @groups = garner do
             filter ||= build_filter(:group, params[:filter])
-            Ldap2Rest::Group.find(:all, { filter:, limit: Settings.ldap.limit_results }).collect(&:to_os)
+            LdapApi::Group.find(:all, { filter:, limit: Settings.ldap.limit_results }).collect(&:to_os)
           end
-          present @groups, with: Ldap2Rest::API::Group
+          present @groups, with: LdapApi::API::Group
         end
 
         desc "Returns a list of groups from LDAP matching specified filter"
@@ -71,9 +71,9 @@ module Ldap2Rest
             requires :filter, type: String, desc: "filter by group name. Wildcard(*) should be used"
           end
           @users = garner do
-            Ldap2Rest::Group.find(:first, params[:name]).members.collect(&:to_os)
+            LdapApi::Group.find(:first, params[:name]).members.collect(&:to_os)
           end
-          present @users, with: Ldap2Rest::API::User
+          present @users, with: LdapApi::API::User
         end
       end
     end

@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 require "garner"
-require_relative "ldap2rest/settings"
-require_relative "ldap2rest/api"
+require_relative "LdapApi/settings"
+require_relative "LdapApi/api"
 
 begin
-  Ldap2Rest::LdapSettings.setup ENV.fetch("CONFIG_PATH", "./config/config.example.yml")
+  LdapApi::LdapSettings.setup ENV.fetch("CONFIG_PATH", "./config/config.example.yml")
 rescue NoMethodError, ArgumentError => e
   puts "\nConfig file error!!! Please read documentation or check with default config file\n\n"
   raise e

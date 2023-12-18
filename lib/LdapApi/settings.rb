@@ -4,7 +4,7 @@ require "config"
 require "active_ldap"
 require "redacting_logger"
 
-module Ldap2Rest
+module LdapApi
   module LdapSettings
     def self.setup(path)
       # load and validate config
@@ -21,8 +21,8 @@ module Ldap2Rest
       settings[:allow_anonymous] = false unless settings.key? :allow_anonymous
       ActiveLdap::Base.setup_connection settings
 
-      require "./lib/ldap2rest/active_ldap"
-      require "./lib/ldap2rest/api/entities"
+      require "./lib/LdapApi/active_ldap"
+      require "./lib/LdapApi/api/entities"
     end
 
     def self.validate_config

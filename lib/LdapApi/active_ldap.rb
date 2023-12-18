@@ -2,7 +2,7 @@
 
 require "active_ldap"
 
-module Ldap2Rest
+module LdapApi
   class User < ActiveLdap::Base
     def self.default_prefix
       nil
@@ -12,7 +12,7 @@ module Ldap2Rest
                  scope: :sub,
                  prefix: Settings.ldap.user.prefix
     belongs_to :groups,
-               class_name: "Ldap2Rest::Group",
+               class_name: "LdapApi::Group",
                many: Settings.ldap.group.member_attribute,
                primary_key: Settings.ldap.group.user_membership_attribute
   end
@@ -26,7 +26,7 @@ module Ldap2Rest
                  scope: :sub,
                  prefix: Settings.ldap.group.prefix
     has_many :members,
-             class_name: "Ldap2Rest::User",
+             class_name: "LdapApi::User",
              wrap: Settings.ldap.group.member_attribute,
              primary_key: Settings.ldap.group.user_membership_attribute
   end

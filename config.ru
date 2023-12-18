@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-require_relative "lib/ldap2rest"
+require_relative "lib/LdapApi"
 
-run Ldap2Rest::API::LDAP
+run LdapApi::API::LDAP

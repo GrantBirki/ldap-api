@@ -3,7 +3,7 @@
 require "grape"
 require "grape-entity"
 
-module Ldap2Rest
+module LdapApi
   module API
     class User < Grape::Entity
       Settings.ldap.user.attributes.to_hash.each do |ldap, service|
