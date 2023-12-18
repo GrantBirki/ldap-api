@@ -1,0 +1,19 @@
+networks:
+  ldap-network:
+    internal: true
+
+services:
+  ldap-server:
+    entrypoint: /acceptance/ldap-server/run-server.sh
+    image: osixia/openldap:1.2.2
+    networks:
+      ldap-network:
+        aliases:
+          - ldap-server.fake
+    ports:
+      - "127.0.0.1:636:636"
+    volumes:
+      - "./spec/acceptance:/acceptance:ro"
+
+volumes:
+  ldap-server:
