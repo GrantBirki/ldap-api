@@ -2,14 +2,14 @@
 
 source "http://rubygems.org"
 
-gem "activeldap", require: 'active_ldap', git: "https://github.com/activeldap/activeldap.git"
-gem "activesupport"
-gem "garner"
-gem "grape"
-gem "jruby-openssl"
-gem "net-ldap"
-gem "rack"
-gem "rails_config"
+gem "activeldap", require: "active_ldap", git: "https://github.com/activeldap/activeldap.git"
+gem "activesupport", "~> 7.1", ">= 7.1.2"
+gem "garner", "~> 0.5.3"
+gem "grape", "~> 2.0"
+gem "jruby-openssl", "~> 0.9.4"
+gem "net-ldap", "~> 0.18.0"
+gem "rack", "~> 3.0", ">= 3.0.8"
+gem "rails_config", "~> 0.99.0"
 
 group :development do
   gem "irb", "~> 1.9"
