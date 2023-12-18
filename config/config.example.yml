@@ -9,22 +9,21 @@ ldap:
     password: kittens
   user:
     dn_attribute: uid
-    prefix: ou=Users
-    classes: 
-      - inetorgperson
-    filter: (|(uid=%s)(sn=%s)(cn=%s)(givenName=%s))
+    prefix: ou=People
+    classes:
+      - top
+    filter: (|(uid=%s)(sn=%s)(cn=%s)(givenname=%s))
     attributes:
-      uid: username
-      sn: last_name
-      givenName: first_name
-      cn: display_name
-      departmentNumber: office
-      employeeNumber: document_number
+      uid: uid
+      sn: sn
+      givenname: givenname
+      cn: cn
+      uidnumber: uidnumber
   group:
     dn_attribute: cn
     member_attribute: member
     user_membership_attribute: dn
-    classes: 
+    classes:
       - groupofnames
     attributes:
       cn: name
