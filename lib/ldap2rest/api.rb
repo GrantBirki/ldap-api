@@ -17,14 +17,15 @@ module Ldap2Rest
       helpers do
         def build_filter(model, value)
           value ||= "*"
-          Settings.ldap.send(model).filter.gsub("%s", value) if Settings.ldap.send(model).filter
+          filter = Settings.ldap.send(model).filter
+          filter.gsub("%s", value) if filter.is_a?(String)
         end
       end
 
       resource :users do
         desc "Returns a list of users from LDAP. List might be truncated if LDAP server limits response size"
         get do
-          @users = cache do
+          @users = garner do
             filter ||= build_filter(:user, params[:filter])
             Ldap2Rest::User.find(:all, { filter:, limit: Settings.ldap.limit_results }).collect do |x|
               x.to_os
@@ -38,7 +39,7 @@ module Ldap2Rest
           params do
             requires :username, type: String, desc: "username to be fetched"
           end
-          @user = cache do
+          @user = garner do
             @user = Ldap2Rest::User.find(:first, params[:username])
             @user.to_os if @user
           end
@@ -49,7 +50,7 @@ module Ldap2Rest
           params do
             requires :username, type: String, desc: "username to be fetched"
           end
-          @groups = cache do
+          @groups = garner do
             Ldap2Rest::User.find(:first, params[:username]).groups.collect { |x| x.to_os }
           end
           present @groups, with: Ldap2Rest::API::Group
@@ -59,7 +60,7 @@ module Ldap2Rest
       resource :groups do
         desc "Returns a list of groups from LDAP. List might be truncated if LDAP server limits response size"
         get do
-          @groups = cache do
+          @groups = garner do
             filter ||= build_filter(:group, params[:filter])
             Ldap2Rest::Group.find(:all, { filter:, limit: Settings.ldap.limit_results }).collect do |x|
               x.to_os
@@ -73,7 +74,7 @@ module Ldap2Rest
           params do
             requires :filter, type: String, desc: "filter by group name. Wildcard(*) should be used"
           end
-          @users = cache do
+          @users = garner do
             Ldap2Rest::Group.find(:first, params[:name]).members.collect { |x| x.to_os }
           end
           present @users, with: Ldap2Rest::API::User
