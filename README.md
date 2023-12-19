@@ -1,20 +1,18 @@
 # ldap-api
 
-ldap-api is a small ruby Rack application intended to be a REST service providing
-access to users and groups stored in a LDAP backend.
+ldap-api is a small read-only Ruby Rack application intended to be a REST service providing access to users and groups stored in a LDAP backend with optional caching configuration.
 
 ## REST API Description
 
-For conveninence we named current version as number 1 to be prepared if a meaningfull
-change in future releases will not affect your installed applications using v1 service
+For conveninence we named current version as number 1 to be prepared if a meaningfull change in future releases will not affect your installed applications using v1 service.
 
-This fact means that every request to services provided will need to be prefixed with
+This fact means that every request to services provided will need to be prefixed with:
 
 ```text
 /v1
 ```
 
-Api will return results in JSON format
+This API will return all results in JSON format
 
 ## Get Users List
 
@@ -26,8 +24,7 @@ Returns a list of users from LDAP. List might be truncated if LDAP server limits
 
 ### Users List Parameters
 
-This service only receives one parameter named *filter* which will be used to filter users by
-specified attributes in config file, using special character * (asterisk) as wildcard character
+This service only receives one parameter named *filter* which will be used to filter users by specified attributes in config file, using special character * (asterisk) as wildcard character
 
 An example list of users whose name begins with chrod is issued by the following URL:
 
@@ -63,8 +60,7 @@ Returns a list of groups from LDAP. List might be truncated if LDAP server limit
 
 ### Groups Parameters
 
-This service only receives one parameter named *filter* which will be used to filter gorups by
-specified attributes in config file, using special character * (asterisk) as wildcard character
+This service only receives one parameter named *filter* which will be used to filter gorups by specified attributes in config file, using special character * (asterisk) as wildcard character
 
 An example list of groups whose name begins with vpn is issued by the following URL:
 
@@ -84,7 +80,7 @@ Returns a list of users that are members of specified group
 
 ## Configuring ldap-api
 
-This simple RACK application is configured using an yml file. This file should be named *config/config.yml*.
+This simple RACK application is configured using an yml file. This file should be named `config/config.yml`.
 
 ## Sample configuration file config/config.yml
 
@@ -121,51 +117,41 @@ ldap:
       cn: name
 ```
 
-A sample configuration file is provided in config directory
-directory.
+A sample configuration file is provided in config directory directory.
 
 ## Configuration file sections
 
 ### Cache
 
-* *ttl:* is a time in seconds to cache results in memory by server, without quering LDAP for same result just queried
+- `ttl`: is a time in seconds to cache results in memory by server, without quering LDAP for same result just queried
 
 ### Limit result sets
 
-* *limit_results:* numbers of entries to return when searching users or groups. If removed, limit is not set and
-all entries are returned or limited by server
+- `limit_results`: numbers of entries to return when searching users or groups. If removed, limit is not set and all entries are returned or limited by server
 
 ### Connection
 
-* *host:* LDAP host server
-* *base:* LDAP base dn
-* *bind_dn:* LDAP user to bind into LDAP as
-* *password:* LDAP user password
-* *allow_anonymous:* if specified anonymous access to LDAP will be used
+- `host`: LDAP host server
+- `base`: LDAP base dn
+- `bind_dn`: LDAP user to bind into LDAP as
+- `password`: LDAP user password
+- `allow_anonymous`: if specified anonymous access to LDAP will be used
 
 ### User
 
-* *dn_attribute:* attribute used as dn: for example uid or cn
-* *prefix:* prefix where users reside. If omited, ldap.base will be used
-* *classess:* array of objectclass retrieved users must meet. Array elements must
+- `dn_attribute`: attribute used as dn: for example uid or cn
+- `prefix`: prefix where users reside. If omited, ldap.base will be used
+- `classess`: array of objectclass retrieved users must meet. Array elements must
 be listed in separate lines prefixed with minus sign
-* *filter:* filter to be used when filtering user listing
-* *attributes:* attribute mapping array. You must define a dictionary (hash) of
-attribute mappings from LDAP attribute name on the left, to a service name attribute
-on the right. In the given example above, you can see that cn ldap attribute will
-be retrieved as display_name by rest service
+- `filter`: filter to be used when filtering user listing
+- `attributes`: attribute mapping array. You must define a dictionary (hash) of attribute mappings from LDAP attribute name on the left, to a service name attribute on the right. In the given example above, you can see that cn ldap attribute will be retrieved as display_name by rest service
 
 ### Group
 
-* *dn_attribute:* attribute used as dn: for example cn
-* *prefix:* prefix where groups reside. If omited, ldap.base will be used
-* *classess:* array of objectclass retrieved groups must meet. Array elements must
-be listed in separate lines prefixed with minus sign
-* *member_attribute:* attribute used by ldap groups to specify members. For example: member
-* *user_membership_attribute:* attribute used by group membership to reference a user.
-For example: dn means users are specified as full dn
-* *filter:* filter to be used when filtering group listing
-* *attributes:* attribute mapping array. You must define a dictionary (hash) of
-attribute mappings from LDAP attribute name on the left, to a service name attribute
-on the right. In the given example above, you can see that cn ldap attribute will
-be retrieved as name by rest service
+- `dn_attribute`: attribute used as dn: for example cn
+- `prefix`: prefix where groups reside. If omited, ldap.base will be used
+- `classess`: array of objectclass retrieved groups must meet. Array elements must be listed in separate lines prefixed with minus sign
+- `member_attribute`: attribute used by ldap groups to specify members. For example: member
+- `user_membership_attribute`: attribute used by group membership to reference a user. For example: dn means users are specified as full dn
+- `filter`: filter to be used when filtering group listing
+- `attributes`: attribute mapping array. You must define a dictionary (hash) of attribute mappings from LDAP attribute name on the left, to a service name attribute on the right. In the given example above, you can see that cn ldap attribute will be retrieved as name by rest service
