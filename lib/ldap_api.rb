@@ -16,7 +16,10 @@ logger = RedactingLogger.new(
 )
 
 # fetch the config file path from the environment
-config = ENV.fetch("CONFIG_PATH", "./config/config.example.yml")
+config = ENV.fetch("CONFIG_PATH", "./config/config.yml")
+
+# check if the config file exists before proceeding
+raise ArgumentError, "config file not found: #{config}" unless File.exist?(config)
 
 # load application config and setup the ldap-api
 begin
