@@ -1,12 +1,12 @@
 ldap:
   cache:
     ttl: 3600
-  limit_results: 100
+  limit_results: -1 # -1 for no limit - the number of results to return from LDAP
   connection:
-    host: "localhost"
-    base: dc=kittens,dc=net
-    bind_dn: uid=emmy,ou=Service_Accounts,dc=kittens,dc=net
-    password: kittens
+    host: "localhost" # LDAP server host
+    base: dc=kittens,dc=net # LDAP base DN
+    bind_dn: uid=emmy,ou=Service_Accounts,dc=kittens,dc=net # LDAP bind DN when making a connection
+    password: kittens # the password for the bind DN being used (omit this value and use the env `LDAP_PASSWORD=kittens` in production)
   user:
     dn_attribute: uid
     prefix: ou=People
