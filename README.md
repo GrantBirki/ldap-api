@@ -1,6 +1,6 @@
 # ldap-api
 
-[![lint](https://github.com/GrantBirki/ldap-api/actions/workflows/lint.yml/badge.svg)](https://github.com/GrantBirki/ldap-api/actions/workflows/lint.yml)
+[![lint](https://github.com/GrantBirki/ldap-api/actions/workflows/lint.yml/badge.svg)](https://github.com/GrantBirki/ldap-api/actions/workflows/lint.yml) [![CodeQL](https://github.com/GrantBirki/ldap-api/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/GrantBirki/ldap-api/actions/workflows/codeql-analysis.yml)
 
 ldap-api is a small read-only Ruby Rack application intended to be a REST service providing access to users and groups stored in a LDAP backend with optional caching configuration.
 
