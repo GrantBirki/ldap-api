@@ -6,7 +6,7 @@ ldap:
     host: "localhost" # LDAP server host
     base: dc=kittens,dc=net # LDAP base DN
     bind_dn: uid=emmy,ou=Service_Accounts,dc=kittens,dc=net # LDAP bind DN when making a connection
-    password: kittens # the password for the bind DN being used (omit this value and use the env `LDAP_PASSWORD=kittens` in production)
+    # password: kittens !deprecated! # Please use the environment variable LDAP_PASSWORD
   user:
     dn_attribute: uid
     prefix: ou=People

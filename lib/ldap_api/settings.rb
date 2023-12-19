@@ -20,6 +20,11 @@ module LdapApi
 
       # bind to LDAP
       settings[:allow_anonymous] = false unless settings.key? :allow_anonymous
+
+      # append the password to the settings hash from the environment
+      # plain text passwords should never live in config files
+      settings[:password] = ENV.fetch("LDAP_PASSWORD", nil)
+
       ActiveLdap::Base.setup_connection(settings)
 
       require "./lib/ldap_api/active_ldap"

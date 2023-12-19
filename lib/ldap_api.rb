@@ -20,6 +20,7 @@ config = ENV.fetch("CONFIG_PATH", "./config/config.example.yml")
 
 # load application config and setup the ldap-api
 begin
+  logger.info("loading ldap-api configuration")
   LdapApi::LdapSettings.setup(config:, logger:)
 rescue NoMethodError, ArgumentError => e
   logger.error("failed to load application config: #{e.message}")
@@ -28,6 +29,7 @@ end
 
 # configure the ldap-api cache
 begin
+  logger.info("ldap.cache.ttl: #{Settings.ldap.cache.ttl}")
   Garner.config.expires_in = Settings.ldap.cache.ttl
 rescue NoMethodError
   fallback_ttl = 1800
