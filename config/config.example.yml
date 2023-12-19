@@ -21,9 +21,9 @@ ldap:
       uidnumber: uidnumber
   group:
     dn_attribute: cn
-    member_attribute: member
+    member_attribute: uniquemember
     user_membership_attribute: dn
     classes:
-      - groupofnames
+      - groupOfUniqueNames
     attributes:
       cn: name
