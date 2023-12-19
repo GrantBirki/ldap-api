@@ -32,13 +32,15 @@ module LdapApi
   end
 end
 
-class ActiveLdap::Base
-  def to_os
-    o = OpenStruct.new
-    Settings.ldap.send(self.class.name.split("::").last.downcase).attributes.to_hash.each do |att, _x|
-      value = send(att)
-      o.send("#{att}=", array_of(value, false))
+module ActiveLdap
+  class Base
+    def to_os
+      o = OpenStruct.new
+      Settings.ldap.send(self.class.name.split("::").last.downcase).attributes.to_hash.each do |att, _x|
+        value = send(att)
+        o.send("#{att}=", array_of(value, false))
+      end
+      o
     end
-    o
   end
 end
