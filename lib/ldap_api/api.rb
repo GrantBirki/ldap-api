@@ -2,11 +2,32 @@
 
 require "grape"
 require "garner/mixins/rack"
+require "redacting_logger"
 
 module LdapApi
   module API
     class LDAP < Grape::API
       helpers Garner::Mixins::Rack
+
+      $stdout.sync = true # don't buffer, flush immediately for logs
+
+      helpers do
+        def build_filter(model, value)
+          value ||= "*"
+          filter = Settings.ldap.send(model).filter
+          filter.gsub("%s", value) if filter.is_a?(String)
+        end
+
+        # setup a custom logger with the Grape API
+        def logger
+          RedactingLogger.new(
+            $stdout, # The device to log to (defaults to $stdout if not provided)
+            level: ENV.fetch("LOG_LEVEL", "INFO").upcase, # The log level to use
+            redacted_msg: "[REDACTED]", # The message to replace the redacted patterns with
+            use_default_patterns: true # Whether to use the default built-in patterns or not
+          )
+        end
+      end
 
       version "v1", using: :path
       format :json
@@ -22,13 +43,13 @@ module LdapApi
           remaining_ttl = Settings.ldap.cache.ttl - elapsed_time.to_i
           header "Cache-TTL", remaining_ttl.to_s
         end
-      end
 
-      helpers do
-        def build_filter(model, value)
-          value ||= "*"
-          filter = Settings.ldap.send(model).filter
-          filter.gsub("%s", value) if filter.is_a?(String)
+        if status == 200
+          # if the request was successful, log the request
+          logger.info("200 OK #{request.request_method} #{request.path} #{request.params}")
+        else
+          # this API only returns 200s so if the request was not successful, log the error
+          logger.error("#{status} #{request.request_method} #{request.path} #{request.params}")
         end
       end
 
