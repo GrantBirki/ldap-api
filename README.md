@@ -174,9 +174,10 @@ Your application will now be running at `localhost:8080` and you can begin makin
 
 To test locally, this project comes with a pre-configured `docker-compose.yml` file with a mock LDAP server. To test locally with this mock server, do the following:
 
-1. Use the `config/config.example.yml` file included in this project with all of its defaults (no need to change anything at all here). Now set the following environment variables to use this file:
+1. Run `script/bootstrap` to install all dependencies
+2. Use the `config/config.example.yml` file included in this project with all of its defaults (no need to change anything at all here). Now set the following environment variables to use this file:
      - `export LDAP_PASSWORD=kittens`
      - `export CONFIG_PATH=config/config.example.yml`
-2. Run `make run` to spin up the docker-compose stack
-3. Run `script/server` to start the API server
-4. Make requests to `localhost:8080` and get back mock data - [get users example](http://localhost:8080/v1/users)
+3. Run `make run` to spin up the docker-compose stack
+4. Run `script/server` to start the API server
+5. Make requests to `localhost:8080` and get back mock data - [get users example](http://localhost:8080/v1/users)
