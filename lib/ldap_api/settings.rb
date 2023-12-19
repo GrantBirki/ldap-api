@@ -6,20 +6,18 @@ require "redacting_logger"
 
 module LdapApi
   module LdapSettings
-    def self.setup(path)
+    def self.setup(config: nil, logger: nil)
       # load and validate config
-      Config.load_and_set_settings path
+      Config.load_and_set_settings(config)
       settings = Settings.ldap.connection.to_hash
       validate_config
 
       # setup a logger
-      $stdout.sync = true # don't buffer, flush immediately
-      settings[:logger] = RedactingLogger.new($stderr)
-      settings[:logger].level = ENV.fetch("LOG_LEVEL", "INFO").upcase.to_sym
+      settings[:logger] = logger
 
       # bind to LDAP
       settings[:allow_anonymous] = false unless settings.key? :allow_anonymous
-      ActiveLdap::Base.setup_connection settings
+      ActiveLdap::Base.setup_connection(settings)
 
       require "./lib/ldap_api/active_ldap"
       require "./lib/ldap_api/api/entities"
