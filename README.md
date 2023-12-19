@@ -125,6 +125,8 @@ A sample configuration file is provided in config directory directory.
 
 - `ttl`: is a time in seconds to cache results in memory by server, without quering LDAP for same result just queried
 
+Once you have configured caching, you will see the `Cache-Ttl` header in responses from the API. This header indicates how much longer in seconds the response will be cached for.
+
 ### Limit result sets
 
 - `limit_results`: numbers of entries to return when searching users or groups. If removed, limit is not set and all entries are returned or limited by server
