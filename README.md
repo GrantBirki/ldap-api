@@ -155,3 +155,26 @@ be listed in separate lines prefixed with minus sign
 - `user_membership_attribute`: attribute used by group membership to reference a user. For example: dn means users are specified as full dn
 - `filter`: filter to be used when filtering group listing
 - `attributes`: attribute mapping array. You must define a dictionary (hash) of attribute mappings from LDAP attribute name on the left, to a service name attribute on the right. In the given example above, you can see that cn ldap attribute will be retrieved as name by rest service
+
+---
+
+## Running ldap-api
+
+To run this application, do the following:
+
+1. Ensure that you have a `config/config.yml` file with all the correct settings
+2. Run `script/bootstrap` to install all dependencies
+3. Run `script/server` to start the server
+
+Your application will now be running at `localhost:8080` and you can begin making requests to it.
+
+### Testing Locally
+
+To test locally, this project comes with a pre-configured `docker-compose.yml` file with a mock LDAP server. To test locally with this mock server, do the following:
+
+1. Use the `config/config.example.yml` file included in this project with all of its defaults (no need to change anything at all here). Now set the following environment variables to use this file:
+     - `export LDAP_PASSWORD=kittens`
+     - `export CONFIG_PATH=config/config.example.yml`
+2. Run `make run` to spin up the docker-compose stack
+3. Run `script/server` to start the API server
+4. Make requests to `localhost:8080` and get back mock data - [get users example](http://localhost:8080/v1/users)
