@@ -21,8 +21,8 @@ module LdapApi
       settings[:allow_anonymous] = false unless settings.key? :allow_anonymous
       ActiveLdap::Base.setup_connection settings
 
-      require "./lib/LdapApi/active_ldap"
-      require "./lib/LdapApi/api/entities"
+      require "./lib/ldap_api/active_ldap"
+      require "./lib/ldap_api/api/entities"
     end
 
     def self.validate_config

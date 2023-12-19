@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 require "garner"
-require_relative "LdapApi/settings"
-require_relative "LdapApi/api"
+require_relative "ldap_api/settings"
+require_relative "ldap_api/api"
 
 begin
   LdapApi::LdapSettings.setup ENV.fetch("CONFIG_PATH", "./config/config.example.yml")
