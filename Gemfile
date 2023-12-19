@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-source "http://rubygems.org"
+source "https://rubygems.org"
 
 gem "activeldap", require: "active_ldap", git: "https://github.com/activeldap/activeldap.git"
 gem "activesupport", "~> 7.1", ">= 7.1.2"
