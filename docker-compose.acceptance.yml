@@ -1,0 +1,35 @@
+networks:
+  ldap-network:
+    internal: false
+
+services:
+  ldap-api:
+    container_name: ldap-api
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 5m
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+  ldap-server:
+    entrypoint: /acceptance/ldap-server/run-server.sh
+    image: osixia/openldap:1.2.2
+    networks:
+      ldap-network:
+        aliases:
+          - ldap-server.fake
+    ports:
+      - "127.0.0.1:636:636"
+      - "127.0.0.1:389:389"
+    volumes:
+      - "./spec/acceptance:/acceptance:ro"
+
+volumes:
+  ldap-server:
