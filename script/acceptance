@@ -57,29 +57,11 @@ else
   echo -e "\n⏩ ${BLUE}Skipping Bootstrap${OFF}"
 fi
 
-# Run Rubocop
-if [[ -z $no_linter ]]; then
-  echo -e "\n🤖 ${BLUE}Running Rubocop: $(date "+%H:%M:%S")${OFF}\n"
-  bundle exec bin/rubocop
-else
-  echo -e "\n⏩ ${BLUE}Skipping Rubocop${OFF}"
-fi
-
 # run tests
 echo -e "\n🧪 ${BLUE}Running tests: $(date "+%H:%M:%S")${OFF}\n"
 cd "$(dirname $0)/.."
 
-bundle exec bin/rspec spec && rspec_exit=$? || rspec_exit=$?
-
-total_coverage=$(cat "$DIR/coverage/total-coverage.txt")
-
-if grep -q "100.0" "$DIR/coverage/total-coverage.txt"; then
-  cov_exit=0
-  echo -e "\n✅ Total Coverage: ${GREEN}$total_coverage${OFF}"
-else
-  cov_exit=1
-  echo -e "\n❌ Total Coverage: ${RED}$total_coverage${OFF}"
-fi
+bundle exec bin/rspec spec/acceptance && rspec_exit=$? || rspec_exit=$?
 
 echo ""
 echo "---------------------------------------"
@@ -93,13 +75,6 @@ else
   echo -e "❌ ${RED}rspec:    exitcode=${rspec_exit}${OFF}"
 fi
 
-if [[ $cov_exit == 0 ]]; then
-  echo -e "✅ \033[0;32mcoverage: exitcode=${cov_exit}\033[0m"
-else
-  echo -e "❌ \033[0;31mcoverage: exitcode=${cov_exit}\033[0m"
-fi
-
 [ $rspec_exit -gt 0 ] && exit 1
-[ $cov_exit -gt 0 ] && exit 1
 
 exit 0
