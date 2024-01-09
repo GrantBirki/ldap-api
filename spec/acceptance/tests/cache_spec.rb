@@ -5,7 +5,7 @@ require "json"
 require "yaml"
 require_relative "../../spec_helper"
 
-# note: these tests could be a bit flaky because they depend on the timing of the cache
+# NOTE: these tests could be a bit flaky because they depend on the timing of the cache
 describe "API calls to validate caching" do
   before do
     @config = YAML.safe_load_file("spec/acceptance/ldap-api/config/config.yml")
@@ -21,11 +21,10 @@ describe "API calls to validate caching" do
     expect(response["Cache-Ttl"].to_i).to eq(@config["ldap"]["cache"]["ttl"])
 
     # now make the exact same request and expect the TTL to be less the original TTL
+    sleep 1
     response = Net::HTTP.start(uri.host, uri.port) do |http|
       http.get(uri)
     end
-
-    sleep 1
 
     expect(response["Cache-Ttl"].to_i).to be < @config["ldap"]["cache"]["ttl"]
   end
