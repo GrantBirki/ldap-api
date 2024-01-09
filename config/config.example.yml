@@ -8,6 +8,7 @@ ldap:
     base: dc=kittens,dc=net # LDAP base DN
     bind_dn: uid=emmy,ou=Service_Accounts,dc=kittens,dc=net # LDAP bind DN when making a connection
     # password: kittens !deprecated! # Please use the environment variable LDAP_PASSWORD
+    # method: :plain # :ssl, :tls, :plain allowed # Please let ActiveLdap decide for you
   user:
     dn_attribute: uid
     prefix: ou=People
