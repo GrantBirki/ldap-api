@@ -26,4 +26,4 @@ jobs:
         run: docker compose -f docker-compose.acceptance.yml up -d --build
 
       - name: acceptance
-        run: sleep 3 && script/acceptance
+        run: script/acceptance
