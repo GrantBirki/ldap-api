@@ -53,6 +53,11 @@ module LdapApi
         end
       end
 
+      # health check endpoint
+      get :health do
+        { status: "OK" }
+      end
+
       resource :users do
         desc "Returns a list of users from LDAP. List might be truncated if LDAP server limits response size"
         get do
