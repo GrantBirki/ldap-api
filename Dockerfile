@@ -3,7 +3,7 @@ FROM ruby:3.3-slim
 WORKDIR /app
 
 RUN apt-get -y update && apt-get -y upgrade
-RUN apt-get install -y make gcc curl build-essential g++ libgmp-dev curl git
+RUN apt-get install -y make gcc curl git
 
 # create nonroot user
 RUN useradd -m nonroot
