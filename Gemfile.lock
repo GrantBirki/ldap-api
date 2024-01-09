@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/activeldap/activeldap.git
-  revision: 5e458a68be37d0e43f11c46cfc3948d6a2199847
+  revision: 888812e59b9b470bd349d24d3fc9c11d2b336875
   specs:
     activeldap (6.1.1)
       activemodel (>= 5.2)
