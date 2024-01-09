@@ -80,6 +80,9 @@ module LdapApi
             [@user&.to_os, Time.now]
           end
 
+          # if the user is null, return a 404
+          error!({ error: "User not found" }, 404) unless @user
+
           present @user, with: LdapApi::API::User
         end
 
@@ -89,8 +92,11 @@ module LdapApi
           end
 
           @groups, @cached_at = garner do
-            [LdapApi::User.find(:first, params[:username]).groups.collect(&:to_os), Time.now]
+            [LdapApi::User.find(:first, params[:username])&.groups&.collect(&:to_os), Time.now]
           end
+
+          # if the user is null, return a 404
+          error!({ error: "User not found" }, 404) unless @groups
 
           present @groups, with: LdapApi::API::Group
         end
@@ -114,8 +120,11 @@ module LdapApi
           end
 
           @users, @cached_at = garner do
-            [LdapApi::Group.find(:first, params[:name]).members.collect(&:to_os), Time.now]
+            [LdapApi::Group.find(:first, params[:name])&.members&.collect(&:to_os), Time.now]
           end
+
+          # if the group is null, return a 404
+          error!({ error: "Group not found" }, 404) unless @users
 
           present @users, with: LdapApi::API::User
         end
