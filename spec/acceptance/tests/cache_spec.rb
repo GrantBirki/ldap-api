@@ -25,6 +25,8 @@ describe "API calls to validate caching" do
       http.get(uri)
     end
 
+    sleep 1
+
     expect(response["Cache-Ttl"].to_i).to be < @config["ldap"]["cache"]["ttl"]
   end
 end
