@@ -35,4 +35,10 @@ describe "API call to groups endpoint" do
 
     expect(memberships).to eq(expected_memberships)
   end
+
+  it "returns a 404 when a group is not found" do
+    uri = URI("http://localhost:8080/v1/groups/does-not-exist/members")
+    response = Net::HTTP.get_response(uri)
+    expect(response.code).to eq("404")
+  end
 end

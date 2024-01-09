@@ -68,4 +68,16 @@ describe "API call to users endpoint" do
 
     expect(user).to eq(expected_response)
   end
+
+  it "returns a 404 when a user is not found" do
+    uri = URI("http://localhost:8080/v1/users/does-not-exist")
+    response = Net::HTTP.get_response(uri)
+    expect(response.code).to eq("404")
+  end
+
+  it "returns a 404 when a user is not found while calling /groups" do
+    uri = URI("http://localhost:8080/v1/users/does-not-exist/groups")
+    response = Net::HTTP.get_response(uri)
+    expect(response.code).to eq("404")
+  end
 end
