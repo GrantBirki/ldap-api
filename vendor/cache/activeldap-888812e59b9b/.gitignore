@@ -1,0 +1,12 @@
+/Gemfile.lock
+/.yardoc/
+/test/.test-result/
+/test/config.yaml
+/doc/reference/
+/doc/html/activeldap/
+/doc/po/*.pot
+/doc/po/*.po
+/doc/po/*/*.edit.po
+/doc/po/*/*.time_stamp
+/pkg/
+/benchmark/config.yaml
