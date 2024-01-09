@@ -25,5 +25,8 @@ jobs:
       - name: start acceptance stack
         run: docker compose -f docker-compose.acceptance.yml up -d --build
 
+      - name: wait for acceptance stack
+        run: sleep 3
+
       - name: acceptance
         run: script/acceptance
