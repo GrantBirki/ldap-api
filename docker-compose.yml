@@ -4,6 +4,7 @@ networks:
 
 services:
   ldap-server:
+    container_name: ldap-server
     entrypoint: /acceptance/ldap-server/run-server.sh
     image: osixia/openldap:1.2.2
     networks:
