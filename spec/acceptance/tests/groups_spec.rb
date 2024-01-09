@@ -24,14 +24,7 @@ describe "API call to groups endpoint" do
     response = Net::HTTP.get(uri)
     memberships = JSON.parse(response)
 
-    expected_memberships = [
-      { "uid" => "NEBELUNg", "uidnumber" => 20_244 },
-      { "uid" => "khaomanee", "uidnumber" => 20_249 },
-      { "uid" => "russianblue", "uidnumber" => 20_257 },
-      { "uid" => "cheetoh", "uidnumber" => 20_260 },
-      { "uid" => "cyprus", "uidnumber" => 20_263 },
-      { "uid" => "oJosazuLEs", "uidnumber" => 20_267 }
-    ]
+    expected_memberships = JSON.parse(File.read("spec/acceptance/tests/data/colonel-meow.json"))
 
     expect(memberships).to eq(expected_memberships)
   end
