@@ -1,10 +1,6 @@
-networks:
-  ldap-network:
-    internal: false
-
 services:
-  ldap-api:
-    container_name: ldap-api
+  api:
+    container_name: api
     restart: unless-stopped
     build:
       context: .
@@ -17,18 +13,17 @@ services:
       timeout: 5s
       retries: 3
       start_period: 15s
+    environment:
+      LDAP_PASSWORD: "kittens"
+      CONFIG_PATH: spec/acceptance/ldap-api/config/config.yml
 
-  ldap-server:
-    container_name: ldap-server
+  ldap:
+    container_name: ldap
     entrypoint: /acceptance/ldap-server/run-server.sh
     image: osixia/openldap:1.2.2
-    networks:
-      ldap-network:
-        aliases:
-          - ldap-server.fake
     ports:
-      - "127.0.0.1:6360:6360"
-      - "127.0.0.1:3890:3890"
+      - "127.0.0.1:636:636"
+      - "127.0.0.1:389:389"
     volumes:
       - "./spec/acceptance:/acceptance:ro"
 

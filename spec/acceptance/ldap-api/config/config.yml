@@ -1,0 +1,31 @@
+ldap:
+  cache:
+    ttl: 3600
+  limit_results: -1 # -1 for no limit - the number of results to return from LDAP
+  connection:
+    host: "ldap" # LDAP server host
+    port: 389 # LDAP server port (389 is default, 636 is for LDAPS)
+    base: dc=kittens,dc=net # LDAP base DN
+    bind_dn: uid=emmy,ou=Service_Accounts,dc=kittens,dc=net # LDAP bind DN when making a connection
+    # password: kittens !deprecated! # Please use the environment variable LDAP_PASSWORD
+    # method: :plain # :ssl, :tls, :plain allowed # Please let ActiveLdap decide for you
+  user:
+    dn_attribute: uid
+    prefix: ou=People
+    classes:
+      - organizationalPerson
+    filter: (|(uid=%s))
+    attributes:
+      uid: uid
+      # sn: sn
+      # givenname: givenname
+      # cn: cn
+      uidnumber: uidnumber
+  group:
+    dn_attribute: cn
+    member_attribute: uniquemember
+    user_membership_attribute: dn
+    classes:
+      - groupOfUniqueNames
+    attributes:
+      cn: name
