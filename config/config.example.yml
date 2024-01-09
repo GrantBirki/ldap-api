@@ -14,7 +14,7 @@ ldap:
     prefix: ou=People
     classes:
       - organizationalPerson
-    filter: (|(uid=%s))
+    filter: (|(uid=%s)) # attributes you can query string filter on ex: /users?filter=chrod*
     attributes:
       uid: uid
       # sn: sn

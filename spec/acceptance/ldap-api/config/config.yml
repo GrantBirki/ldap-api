@@ -14,7 +14,7 @@ ldap:
     prefix: ou=People
     classes:
       - organizationalPerson
-    filter: (|(uid=%s))
+    filter: (|(uid=%s)(sn=%s)(mail=%s)(manager=%s)) # attributes you can query string filter on
     attributes:
       uid: uid
       manager: manager
