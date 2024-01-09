@@ -12,7 +12,7 @@ services:
     ports:
       - 8080:8080
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      test: ["CMD", "curl", "-f", "http://localhost:8080/v1/health"]
       interval: 5m
       timeout: 5s
       retries: 3
@@ -27,8 +27,8 @@ services:
         aliases:
           - ldap-server.fake
     ports:
-      - "127.0.0.1:636:636"
-      - "127.0.0.1:389:389"
+      - "127.0.0.1:6360:6360"
+      - "127.0.0.1:3890:3890"
     volumes:
       - "./spec/acceptance:/acceptance:ro"
 
