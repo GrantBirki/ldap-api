@@ -24,6 +24,57 @@ This API will return all results in JSON format
 
 Returns a list of users from LDAP. List might be truncated if LDAP server limits response size
 
+Example Response:
+
+```json
+[
+    {
+        "uid": "NEBELUNg",
+        "manager": {
+            "rdns": [
+                {
+                    "uid": "oJosazuLEs"
+                },
+                {
+                    "ou": "People"
+                },
+                {
+                    "dc": "kittens"
+                },
+                {
+                    "dc": "net"
+                }
+            ]
+        },
+        "mail": "NEBELUNg@kittens.net",
+        "employeenumber": "000001",
+        "uidnumber": 20244
+    },
+    {
+        "uid": "pixiebob",
+        "manager": {
+            "rdns": [
+                {
+                    "uid": "balinese"
+                },
+                {
+                    "ou": "People"
+                },
+                {
+                    "dc": "kittens"
+                },
+                {
+                    "dc": "net"
+                }
+            ]
+        },
+        "mail": "pixiebob@kittens.net",
+        "employeenumber": "000002",
+        "uidnumber": 20245
+    }
+]
+```
+
 ### Users List Parameters
 
 This service only receives one parameter named *filter* which will be used to filter users by specified attributes in config file, using special character * (asterisk) as wildcard character
