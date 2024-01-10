@@ -1,0 +1,113 @@
+name: Test
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  ruby:
+    name: >-
+      Ruby ${{ matrix.ruby }} &
+      Active Model ${{ matrix.activemodel }} &
+      ${{ matrix.adapter }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # Active Model 5
+          - activemodel: "5"
+            adapter: "ldap"
+            ruby: "2.5"
+          - activemodel: "5"
+            adapter: "net-ldap"
+            ruby: "2.5"
+          - activemodel: "5"
+            adapter: "ldap"
+            ruby: "2.6"
+          - activemodel: "5"
+            adapter: "net-ldap"
+            ruby: "2.6"
+          - activemodel: "5"
+            adapter: "ldap"
+            ruby: "2.7"
+          - activemodel: "5"
+            adapter: "net-ldap"
+            ruby: "2.7"
+
+          # Active Model 6
+          - activemodel: "6"
+            adapter: "ldap"
+            ruby: "2.5"
+          - activemodel: "6"
+            adapter: "net-ldap"
+            ruby: "2.5"
+          - activemodel: "6"
+            adapter: "ldap"
+            ruby: "2.6"
+          - activemodel: "6"
+            adapter: "net-ldap"
+            ruby: "2.6"
+          - activemodel: "6"
+            adapter: "ldap"
+            ruby: "2.7"
+          - activemodel: "6"
+            adapter: "net-ldap"
+            ruby: "2.7"
+          - activemodel: "6"
+            adapter: "ldap"
+            ruby: "3.0"
+          - activemodel: "6"
+            adapter: "net-ldap"
+            ruby: "3.0"
+
+          # Active Model 7
+          - activemodel: "7"
+            adapter: "ldap"
+            ruby: "2.7"
+          - activemodel: "7"
+            adapter: "net-ldap"
+            ruby: "2.7"
+          - activemodel: "7"
+            adapter: "ldap"
+            ruby: "3.0"
+          - activemodel: "7"
+            adapter: "net-ldap"
+            ruby: "3.0"
+          - activemodel: "7"
+            adapter: "ldap"
+            ruby: "3.1"
+          - activemodel: "7"
+            adapter: "net-ldap"
+            ruby: "3.1"
+          - activemodel: "7"
+            adapter: "ldap"
+            ruby: "3.2"
+          - activemodel: "7"
+            adapter: "net-ldap"
+            ruby: "3.2"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run
+        run: |
+          docker-compose run \
+            -e ACTIVE_LDAP_TEST_ADAPTER=${{ matrix.adapter }} \
+            ruby-${{ matrix.ruby }}-activemodel-${{ matrix.activemodel }}
+
+  jruby:
+    name: JRuby ${{ matrix.jruby }} & Active Model ${{ matrix.activemodel }}
+    strategy:
+      fail-fast: false
+      matrix:
+        jruby:
+          - 9
+        activemodel:
+          - "5"
+          - "6"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run
+        run: |
+          docker-compose run \
+            jruby-${{ matrix.jruby }}-activemodel-${{ matrix.activemodel }}
