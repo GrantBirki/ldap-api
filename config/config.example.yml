@@ -1,6 +1,6 @@
 ldap:
   cache:
-    ttl: 3600
+    ttl: 3600 # cache ttl in seconds
   limit_results: -1 # -1 for no limit - the number of results to return from LDAP
   connection:
     host: "localhost" # LDAP server host

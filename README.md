@@ -133,44 +133,54 @@ Returns a list of users that are members of specified group
 
 ## Configuring ldap-api
 
-This simple RACK application is configured using an yml file. This file should be named `config/config.yml`.
+This simple RACK application is configured using a yml file. This file should be named `config/config.yml`.
+
+This application requires two environment variables to be set:
+
+- `export LDAP_PASSWORD=<password>` - The password to use for API -> LDAP authentication
+- `export CONFIG_PATH=config/config.example.yml` - The path to the configuration file
+
+Now all configuration is done in the `config/config.yml` file from here on out.
 
 ## Sample configuration file config/config.yml
+
+Here is an example configuration file that the API uses:
 
 ```yml
 ldap:
   cache:
-    ttl: 3600
-  limit_results: 100
+    ttl: 3600 # cache ttl in seconds
+  limit_results: -1 # -1 for no limit - the number of results to return from LDAP
   connection:
-    host: localhost
-    base: o=acme
-    bind_dn: cn=admin,o=acme
-    password: pass
+    host: "localhost" # LDAP server host
+    port: 389 # LDAP server port (389 is default, 636 is for LDAPS)
+    base: dc=kittens,dc=net # LDAP base DN
+    bind_dn: uid=emmy,ou=Service_Accounts,dc=kittens,dc=net # LDAP bind DN when making a connection
+    # password: kittens !deprecated! # Please use the environment variable LDAP_PASSWORD
+    # method: :plain # :ssl, :tls, :plain allowed # Please let ActiveLdap decide for you
   user:
     dn_attribute: uid
-    prefix: ou=Users
+    prefix: ou=People
     classes:
-      - inetorgperson
-    filter: (|(uid=%s)(sn=%s)(cn=%s)(givenName=%s))
+      - organizationalPerson
+    filter: (|(uid=%s)) # attributes you can query string filter on ex: /users?filter=chrod*
     attributes:
-      uid: username
-      sn: last_name
-      givenName: first_name
-      cn: display_name
-      departmentNumber: office
-      employeeNumber: document_number
+      uid: uid
+      # sn: sn
+      # givenname: givenname
+      # cn: cn
+      uidnumber: uidnumber
   group:
     dn_attribute: cn
-    member_attribute: member
+    member_attribute: uniquemember
     user_membership_attribute: dn
     classes:
-      - groupofnames
+      - groupOfUniqueNames
     attributes:
       cn: name
 ```
 
-A sample configuration file is provided in config directory directory.
+A sample configuration file is provided in the [`config`](config/) directory.
 
 ## Configuration file sections
 
@@ -187,9 +197,9 @@ Once you have configured caching, you will see the `Cache-Ttl` header in respons
 ### Connection
 
 - `host`: LDAP host server
+- `port`: LDAP port. Default is `389` for LDAP and `636` for LDAPS
 - `base`: LDAP base dn
 - `bind_dn`: LDAP user to bind into LDAP as
-- `password`: LDAP user password
 - `allow_anonymous`: if specified anonymous access to LDAP will be used
 
 ### User
