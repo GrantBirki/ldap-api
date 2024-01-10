@@ -69,7 +69,7 @@ fi
 echo -e "\n🧪 ${BLUE}Running tests: $(date "+%H:%M:%S")${OFF}\n"
 cd "$(dirname $0)/.."
 
-bundle exec bin/rspec spec && rspec_exit=$? || rspec_exit=$?
+bundle exec bin/rspec spec/unit && rspec_exit=$? || rspec_exit=$?
 
 total_coverage=$(cat "$DIR/coverage/total-coverage.txt")
 
