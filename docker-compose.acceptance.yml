@@ -1,0 +1,31 @@
+services:
+  api:
+    container_name: api
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/v1/health"]
+      interval: 5m
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+    environment:
+      LDAP_PASSWORD: "kittens"
+      CONFIG_PATH: spec/acceptance/ldap-api/config/config.yml
+
+  ldap:
+    container_name: ldap
+    entrypoint: /acceptance/ldap-server/run-server.sh
+    image: osixia/openldap:1.2.2
+    ports:
+      - "127.0.0.1:636:636"
+      - "127.0.0.1:389:389"
+    volumes:
+      - "./spec/acceptance:/acceptance:ro"
+
+volumes:
+  ldap-server:

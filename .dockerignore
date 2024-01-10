@@ -1,0 +1,8 @@
+.bundle/
+.github/
+bin/
+docs/
+docker-compose.yml
+README.md
+LICENSE
+vendor/gems/

@@ -1,0 +1,134 @@
+[
+    {
+        "uid": "NEBELUNg",
+        "manager": {
+            "rdns": [
+                {
+                    "uid": "oJosazuLEs"
+                },
+                {
+                    "ou": "People"
+                },
+                {
+                    "dc": "kittens"
+                },
+                {
+                    "dc": "net"
+                }
+            ]
+        },
+        "mail": "NEBELUNg@kittens.net",
+        "employeenumber": "000001",
+        "uidnumber": 20244
+    },
+    {
+        "uid": "khaomanee",
+        "manager": {
+            "rdns": [
+                {
+                    "uid": "oJosazuLEs"
+                },
+                {
+                    "ou": "People"
+                },
+                {
+                    "dc": "kittens"
+                },
+                {
+                    "dc": "net"
+                }
+            ]
+        },
+        "mail": "khaomanee@kittens.net",
+        "employeenumber": "000006",
+        "uidnumber": 20249
+    },
+    {
+        "uid": "russianblue",
+        "manager": {
+            "rdns": [
+                {
+                    "uid": "mainecoon"
+                },
+                {
+                    "ou": "People"
+                },
+                {
+                    "dc": "kittens"
+                },
+                {
+                    "dc": "net"
+                }
+            ]
+        },
+        "mail": "russianblue@kittens.net",
+        "employeenumber": "000014",
+        "uidnumber": 20257
+    },
+    {
+        "uid": "cheetoh",
+        "manager": {
+            "rdns": [
+                {
+                    "uid": "oJosazuLEs"
+                },
+                {
+                    "ou": "People"
+                },
+                {
+                    "dc": "kittens"
+                },
+                {
+                    "dc": "net"
+                }
+            ]
+        },
+        "mail": "cheetoh@kittens.net",
+        "employeenumber": "000017",
+        "uidnumber": 20260
+    },
+    {
+        "uid": "cyprus",
+        "manager": {
+            "rdns": [
+                {
+                    "uid": "oJosazuLEs"
+                },
+                {
+                    "ou": "People"
+                },
+                {
+                    "dc": "kittens"
+                },
+                {
+                    "dc": "net"
+                }
+            ]
+        },
+        "mail": "cyprus@kittens.net",
+        "employeenumber": "000020",
+        "uidnumber": 20263
+    },
+    {
+        "uid": "oJosazuLEs",
+        "manager": {
+            "rdns": [
+                {
+                    "uid": "DONSKoy"
+                },
+                {
+                    "ou": "People"
+                },
+                {
+                    "dc": "kittens"
+                },
+                {
+                    "dc": "net"
+                }
+            ]
+        },
+        "mail": "oJosazuLEs@kittens.net",
+        "employeenumber": "000024",
+        "uidnumber": 20267
+    }
+]
