@@ -3,7 +3,7 @@
 source "https://rubygems.org"
 
 gem "activeldap", require: "active_ldap", git: "https://github.com/activeldap/activeldap.git"
-gem "activesupport", "~> 7.1", ">= 7.1.2"
+gem "activesupport", "~> 7.1"
 gem "config", "~> 5.1"
 gem "garner", "~> 0.5.3"
 gem "grape", "~> 2.0"
