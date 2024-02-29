@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/activeldap/activeldap.git
-  revision: 888812e59b9b470bd349d24d3fc9c11d2b336875
+  revision: 81295053c1db67f4cd744465d5d289051b5a81e1
   specs:
-    activeldap (6.1.1)
+    activeldap (7.0.1)
       activemodel (>= 5.2)
       builder
       gettext
@@ -12,9 +12,9 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    activemodel (7.1.3)
-      activesupport (= 7.1.3)
-    activesupport (7.1.3)
+    activemodel (7.1.3.2)
+      activesupport (= 7.1.3.2)
+    activesupport (7.1.3.2)
       base64
       bigdecimal
       concurrent-ruby (~> 1.0, >= 1.0.2)
@@ -107,7 +107,7 @@ GEM
     language_server-protocol (3.17.0.3)
     locale (2.1.3)
     logger (1.6.0)
-    minitest (5.22.0)
+    minitest (5.22.2)
     multi_json (1.15.0)
     mustermann (3.0.0)
       ruby2_keywords (~> 0.0.1)
@@ -129,7 +129,7 @@ GEM
     puma (6.4.2)
       nio4r (~> 2.0)
     racc (1.7.3)
-    rack (3.0.9)
+    rack (3.0.9.1)
     rack-accept (0.4.5)
       rack (>= 0.4)
     rackup (2.1.0)
