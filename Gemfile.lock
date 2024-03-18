@@ -29,7 +29,7 @@ GEM
     bigdecimal (3.1.6)
     builder (3.2.4)
     concurrent-ruby (1.2.3)
-    config (5.3.0)
+    config (5.4.0)
       deep_merge (~> 1.2, >= 1.2.1)
     connection_pool (2.4.1)
     deep_merge (1.2.2)
@@ -206,7 +206,7 @@ PLATFORMS
 DEPENDENCIES
   activeldap!
   activesupport (~> 7.1)
-  config (~> 5.3)
+  config (~> 5.4)
   garner (~> 0.5.3)
   grape (~> 2.0)
   grape-entity (~> 1.0)
