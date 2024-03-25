@@ -12,7 +12,7 @@ gem "net-ldap", "~> 0.19.0"
 gem "puma", "~> 6.4"
 gem "rack", "~> 3.0"
 gem "rackup", "~> 2.1"
-gem "redacting-logger", "~> 1.2.0"
+gem "redacting-logger", "~> 1.2.1"
 
 group :development do
   gem "irb", "~> 1.12"
