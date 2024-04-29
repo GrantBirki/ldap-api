@@ -21,7 +21,7 @@ group :development do
   gem "rubocop-github", "~> 0.20"
   gem "rubocop-performance", "~> 1.21"
   gem "rubocop-rspec", "~> 2.29"
-  gem "ruby-lsp", "~> 0.16.4"
+  gem "ruby-lsp", "~> 0.16.6"
   gem "simplecov", "~> 0.22"
   gem "simplecov-erb", "~> 1.0"
 end
