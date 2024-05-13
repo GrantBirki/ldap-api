@@ -15,13 +15,13 @@ gem "rackup", "~> 2.1"
 gem "redacting-logger", "~> 1.2.1"
 
 group :development do
-  gem "irb", "~> 1.12"
+  gem "irb", "~> 1.13"
   gem "rspec", "~> 3.13"
   gem "rubocop", "~> 1.63"
   gem "rubocop-github", "~> 0.20"
   gem "rubocop-performance", "~> 1.21"
   gem "rubocop-rspec", "~> 2.29"
-  gem "ruby-lsp", "~> 0.16.4"
+  gem "ruby-lsp", "~> 0.16.6"
   gem "simplecov", "~> 0.22"
   gem "simplecov-erb", "~> 1.0"
 end
