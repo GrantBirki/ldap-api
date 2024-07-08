@@ -15,7 +15,7 @@ gem "rackup", "~> 2.1"
 gem "redacting-logger", "~> 1.3.1"
 
 group :development do
-  gem "irb", "~> 1.13"
+  gem "irb", "~> 1.14"
   gem "rspec", "~> 3.13"
   gem "rubocop", "~> 1.64"
   gem "rubocop-github", "~> 0.20"
