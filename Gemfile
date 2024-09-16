@@ -6,7 +6,7 @@ gem "activeldap", require: "active_ldap", git: "https://github.com/activeldap/ac
 gem "activesupport", "~> 7.2"
 gem "config", "~> 5.5"
 gem "garner", "~> 0.5.3"
-gem "grape", "~> 2.1"
+gem "grape", "~> 2.2"
 gem "grape-entity", "~> 1.0"
 gem "net-ldap", "~> 0.19.0"
 gem "puma", "~> 6.4"
