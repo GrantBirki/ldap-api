@@ -11,7 +11,7 @@ gem "grape-entity", "~> 1.0"
 gem "net-ldap", "~> 0.19.0"
 gem "puma", "~> 6.4"
 gem "rack", "~> 3.1"
-gem "rackup", "~> 2.1"
+gem "rackup", "~> 2.2"
 gem "redacting-logger", "~> 1.4.0"
 
 group :development do
