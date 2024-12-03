@@ -3,15 +3,15 @@
 source "https://rubygems.org"
 
 gem "activeldap", require: "active_ldap", git: "https://github.com/activeldap/activeldap.git"
-gem "activesupport", "~> 7.2"
+gem "activesupport", "~> 8.0"
 gem "config", "~> 5.5"
 gem "garner", "~> 0.5.3"
 gem "grape", "~> 2.2"
 gem "grape-entity", "~> 1.0"
 gem "net-ldap", "~> 0.19.0"
-gem "puma", "~> 6.4"
+gem "puma", "~> 6.5"
 gem "rack", "~> 3.1"
-gem "rackup", "~> 2.1"
+gem "rackup", "~> 2.2"
 gem "redacting-logger", "~> 1.4.0"
 
 group :development do
