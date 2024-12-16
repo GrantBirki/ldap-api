@@ -12,9 +12,9 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    activemodel (8.0.0)
-      activesupport (= 8.0.0)
-    activesupport (8.0.0)
+    activemodel (8.0.1)
+      activesupport (= 8.0.1)
+    activesupport (8.0.1)
       base64
       benchmark (>= 0.3)
       bigdecimal
@@ -91,8 +91,8 @@ GEM
     json (2.7.2)
     language_server-protocol (3.17.0.3)
     locale (2.1.4)
-    logger (1.6.1)
-    minitest (5.25.2)
+    logger (1.6.3)
+    minitest (5.25.4)
     multi_json (1.15.0)
     mustermann (3.0.3)
       ruby2_keywords (~> 0.0.1)
@@ -173,7 +173,7 @@ GEM
       sorbet-runtime (>= 0.5.10782)
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
-    securerandom (0.3.2)
+    securerandom (0.4.1)
     simplecov (0.22.0)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
