@@ -48,20 +48,6 @@ module ActiveLdap
 
   class << self
     include GetTextSupport
-    def const_missing(id)
-      case id
-      when :ConnectionNotEstablished
-        message =
-          _("ActiveLdap::ConnectionNotEstablished has been deprecated " \
-            "since 1.1.0. " \
-            "Please use ActiveLdap::ConnectionNotSetup instead.")
-        ActiveLdap.deprecator.warn(message)
-        const_set("ConnectionNotEstablished", ConnectionNotSetup)
-        ConnectionNotEstablished
-      else
-        super
-      end
-    end
   end
 
   class Error < StandardError
@@ -382,17 +368,6 @@ module ActiveLdap
         super
         ensure_logger
         nil
-      end
-
-      # establish_connection is deprecated since 1.1.0. Please use
-      # setup_connection() instead.
-      def establish_connection(config=nil)
-        message =
-          _("ActiveLdap::Base.establish_connection has been deprecated " \
-            "since 1.1.0. " \
-            "Please use ActiveLdap::Base.setup_connection instead.")
-        ActiveLdap.deprecator.warn(message)
-        setup_connection(config)
       end
 
       def create(attributes=nil, &block)

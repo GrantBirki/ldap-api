@@ -94,12 +94,6 @@ module ActiveLdap
         unless Adapter::Base.respond_to?(adapter_method)
           raise AdapterNotFound.new(adapter)
         end
-        if config.has_key?(:ldap_scope)
-          message = _(":ldap_scope connection option is deprecated. " \
-                      "Use :scope instead.")
-          ActiveLdap.deprecator.warn(message)
-          config[:scope] ||= config.delete(:ldap_scope)
-        end
         config = remove_connection_related_configuration(config)
         Adapter::Base.send(adapter_method, config)
       end
@@ -151,15 +145,6 @@ module ActiveLdap
         define_configuration(key, merge_configuration(config))
       end
 
-      def establish_connection(config=nil)
-        message =
-          _("ActiveLdap::Connection.establish_connection has been deprecated " \
-            "since 1.1.0. " \
-            "Please use ActiveLdap::Connection.setup_connection instead.")
-        ActiveLdap.deprecator.warn(message)
-        setup_connection(config)
-      end
-
       # Return the schema object
       def schema
         connection.schema
@@ -209,15 +194,6 @@ module ActiveLdap
 
       remove_connection
       self.class.define_configuration(dn, config)
-    end
-
-    def establish_connection(config=nil)
-      message =
-        _("ActiveLdap::Connection#establish_connection has been deprecated " \
-          "since 1.1.0. " \
-          "Please use ActiveLdap::Connection#setup_connection instead.")
-      ActiveLdap.deprecator.warn(message)
-      setup_connection(config)
     end
 
     def remove_connection
