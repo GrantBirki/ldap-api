@@ -3,7 +3,7 @@ FROM ruby:3.3-slim
 WORKDIR /app
 
 RUN apt-get -y update && apt-get -y upgrade
-RUN apt-get install -y make gcc curl git
+RUN apt-get install -y make gcc curl git libyaml-dev
 
 # create nonroot user
 RUN useradd -m nonroot
