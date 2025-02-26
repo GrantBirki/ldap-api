@@ -6,13 +6,13 @@ AllCops:
   NewCops: enable
   SuggestExtensions: false
   DisplayCopNames: true
-  TargetRubyVersion: 3.3
+  TargetRubyVersion: 3.4
   Exclude:
-    - 'bin/*'
-    - 'spec/acceptance/fixtures/**/*'
-    - 'spec/unit/fixtures/**/*'
-    - 'vendor/**/*'
-    - '.github/**/*'
+    - "bin/*"
+    - "spec/acceptance/fixtures/**/*"
+    - "spec/unit/fixtures/**/*"
+    - "vendor/**/*"
+    - ".github/**/*"
 
 Style/HashSyntax:
   Enabled: false
