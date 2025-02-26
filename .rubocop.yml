@@ -8,11 +8,11 @@ AllCops:
   DisplayCopNames: true
   TargetRubyVersion: 3.3
   Exclude:
-    - 'bin/*'
-    - 'spec/acceptance/fixtures/**/*'
-    - 'spec/unit/fixtures/**/*'
-    - 'vendor/**/*'
-    - '.github/**/*'
+    - "bin/*"
+    - "spec/acceptance/fixtures/**/*"
+    - "spec/unit/fixtures/**/*"
+    - "vendor/**/*"
+    - ".github/**/*"
 
 Style/HashSyntax:
   Enabled: false
