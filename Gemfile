@@ -17,11 +17,11 @@ gem "redacting-logger", "~> 1.5.0"
 group :development do
   gem "irb", "~> 1.15"
   gem "rspec", "~> 3.13"
-  gem "rubocop", "~> 1.77"
+  gem "rubocop", "~> 1.78"
   gem "rubocop-github", "~> 0.26"
   gem "rubocop-performance", "~> 1.25"
   gem "rubocop-rspec", "~> 3.6"
-  gem "ruby-lsp", "~> 0.24.2"
+  gem "ruby-lsp", "~> 0.25.0"
   gem "simplecov", "~> 0.22"
   gem "simplecov-erb", "~> 1.0"
 end
