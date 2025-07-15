@@ -4,7 +4,7 @@ source "https://rubygems.org"
 
 gem "activeldap", require: "active_ldap", git: "https://github.com/activeldap/activeldap.git"
 gem "activesupport", "~> 8.0"
-gem "config", "~> 5.5"
+gem "config", "~> 5.6"
 gem "garner", "~> 0.5.3"
 gem "grape", "~> 2.4"
 gem "grape-entity", "~> 1.0"
