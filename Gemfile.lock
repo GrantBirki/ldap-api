@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/activeldap/activeldap.git
-  revision: 843948e22a7d04f8fbf732f849f105e309fa1ecb
+  revision: aadb93240d25f22d9b8d0c5d89aed2fde114c69b
   specs:
     activeldap (7.2.3)
       activemodel (>= 7.0)
@@ -12,9 +12,9 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    activemodel (8.0.2)
-      activesupport (= 8.0.2)
-    activesupport (8.0.2)
+    activemodel (8.0.2.1)
+      activesupport (= 8.0.2.1)
+    activesupport (8.0.2.1)
       base64
       benchmark (>= 0.3)
       bigdecimal
@@ -114,17 +114,17 @@ GEM
     pp (0.6.2)
       prettyprint
     prettyprint (0.2.0)
-    prime (0.1.3)
+    prime (0.1.4)
       forwardable
       singleton
     prism (1.4.0)
     psych (5.2.3)
       date
       stringio
-    puma (6.6.0)
+    puma (6.6.1)
       nio4r (~> 2.0)
     racc (1.8.1)
-    rack (3.1.16)
+    rack (3.2.0)
     rackup (2.2.1)
       rack (>= 3)
     rainbow (3.1.1)
@@ -225,7 +225,7 @@ DEPENDENCIES
   irb (~> 1.15)
   net-ldap (~> 0.19.0)
   puma (~> 6.6)
-  rack (~> 3.1)
+  rack (~> 3.2)
   rackup (~> 2.2)
   redacting-logger (~> 1.5.0)
   rspec (~> 3.13)
