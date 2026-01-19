@@ -20,7 +20,7 @@ group :development do
   gem "rubocop", "~> 1.82"
   gem "rubocop-github", "~> 0.26"
   gem "rubocop-performance", "~> 1.26"
-  gem "rubocop-rspec", "~> 3.8"
+  gem "rubocop-rspec", "~> 3.9"
   gem "ruby-lsp", "~> 0.26.4"
   gem "simplecov", "~> 0.22"
   gem "simplecov-erb", "~> 1.0"
