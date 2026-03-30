@@ -3,16 +3,16 @@
 source "https://rubygems.org"
 
 gem "activeldap", require: "active_ldap", git: "https://github.com/activeldap/activeldap.git"
-gem "activesupport", "~> 8.0"
+gem "activesupport", "~> 8.1"
 gem "config", "~> 5.6"
 gem "garner", "~> 0.5.3"
-gem "grape", "~> 2.4"
+gem "grape", "~> 3.1"
 gem "grape-entity", "~> 1.0"
-gem "net-ldap", "~> 0.19.0"
-gem "puma", "~> 6.6"
-gem "rack", "~> 3.1"
-gem "rackup", "~> 2.2"
-gem "redacting-logger", "~> 1.5.0"
+gem "net-ldap", "~> 0.20.0"
+gem "puma", "~> 7.2"
+gem "rack", "~> 3.2"
+gem "rackup", "~> 2.3"
+gem "redacting-logger", "~> 1.5.1"
 
 group :development do
   gem "irb", "~> 1.16"
